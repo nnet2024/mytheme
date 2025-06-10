@@ -1,0 +1,2 @@
+# mytheme
+Default theme
