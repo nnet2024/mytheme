@@ -18,9 +18,8 @@
   <body>
 
       <header style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
-        <!-- Brock University Logo -->
-        <!-- src="{{ '/assets/images/brock-logo.png' | relative_url }}" -->
-        <img src="assets/images/brock-logo.png" alt="Brock University Logo" style="max-width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
+        <!-- Brock University Logo file assets/images/brock-logo.png -->
+        <img src="{{ '/assets/images/brock-logo.png' | relative_url }}" alt="Brock University Logo" style="max-width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
         <h1 style="margin-top: 0;">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
         <p>{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
       </header>
@@ -32,10 +31,27 @@
     <div class="wrapper">
       <nav>
         <ul>
-          <!-- Navigation links can be added here for your research projects -->
-          <!-- Example: <li><a href="{{ '/project-one.html' | relative_url }}">Project One</a></li> -->
-          <!-- You can link back to your main university page here -->
+          <!-- Link back to your main university page -->
           <li><a href="https://rkumar-brock.ca" target="_blank" rel="noopener noreferrer">Rahul Kumar's Brock University Page</a></li>
+          <li class="separator" style="border-top: 1px solid #eee; margin: 10px 0;"></li>
+          <!-- New navigation links for your research project -->
+          <li><a href="{{ '/about.html' | relative_url }}">About the Project</a></li>
+          <li><a href="{{ '/get-involved.html' | relative_url }}">Get Involved</a></li>
+          <li><a href="{{ '/findings.html' | relative_url }}">Findings</a>
+            <!-- Optional subpages for Findings -->
+            <ul>
+              <li><a href="{{ '/publications.html' | relative_url }}">Publications</a></li>
+              <li><a href="{{ '/reports.html' | relative_url }}">Reports</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ '/resources.html' | relative_url }}">Resources</a></li>
+          <li><a href="{{ '/research-team.html' | relative_url }}">Research Team</a></li>
+          <li><a href="{{ '/news.html' | relative_url }}">News & Updates</a></li>
+          <li><a href="{{ '/events.html' | relative_url }}">Events</a></li>
+          <li><a href="{{ '/contact.html' | relative_url }}">Contact</a></li>
+          <li><a href="{{ '/ethics-data-governance.html' | relative_url }}">Ethics & Data Governance</a></li>
+          <li><a href="{{ '/acknowledgements.html' | relative_url }}">Acknowledgements</a></li>
+          <li><a href="{{ '/faq.html' | relative_url }}">FAQ</a></li>
         </ul>
       </nav>
       <section>
