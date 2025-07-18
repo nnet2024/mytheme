@@ -17,29 +17,28 @@
   </head>
   <body>
 
-      <header>
-        <h1>{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
+      <header style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
+        <!-- Brock University Logo -->
+        <!-- You will need to upload your Brock University logo to your repository (e.g., in an 'assets/images' folder) -->
+        <!-- and replace the 'src' attribute with the actual URL. -->
+        <!-- For example: src="{{ '/assets/images/brock-logo.png' | relative_url }}" -->
+        <img src="https://placehold.co/100x100/FF0000/FFFFFF?text=Brock+Logo" alt="Brock University Logo" style="max-width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
+        <h1 style="margin-top: 0;">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
         <p>{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
       </header>
 
-      <div id="banner">
-        <span id="logo"></span>
-
-        <a href="{{ site.github.repository_url }}" class="button fork"><strong>View On GitHub</strong></a>
-        {% if site.show_downloads %}
-          <div class="downloads">
-            <span>Downloads:</span>
-            <ul>
-              <li><a href="{{ site.github.zip_url }}" class="button">ZIP</a></li>
-              <li><a href="{{ site.github.tar_url }}" class="button">TAR</a></li>
-            </ul>
-          </div>
-        {% endif %}
+      <div id="banner" style="display: none;">
+        <!-- The banner section is hidden as per your request to simplify the layout -->
       </div><!-- end banner -->
 
     <div class="wrapper">
       <nav>
-        <ul></ul>
+        <ul>
+          <!-- Navigation links can be added here for your research projects -->
+          <!-- Example: <li><a href="{{ '/project-one.html' | relative_url }}">Project One</a></li> -->
+          <!-- You can link back to your main university page here -->
+          <li><a href="https://rkumar-brock.ca" target="_blank" rel="noopener noreferrer">Rahul Kumar's Brock University Page</a></li>
+        </ul>
       </nav>
       <section>
         {{ content }}
