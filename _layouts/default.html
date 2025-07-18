@@ -19,10 +19,8 @@
 
       <header style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
         <!-- Brock University Logo -->
-        <!-- You will need to upload your Brock University logo to your repository (e.g., in an 'assets/images' folder) -->
-        <!-- and replace the 'src' attribute with the actual URL. -->
-        <!-- For example: src="{{ '/assets/images/brock-logo.png' | relative_url }}" -->
-        <img src="https://placehold.co/100x100/FF0000/FFFFFF?text=Brock+Logo" alt="Brock University Logo" style="max-width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
+        <!-- src="{{ '/assets/images/brock-logo.png' | relative_url }}" -->
+        <img src="assets/images/brock-logo.png" alt="Brock University Logo" style="max-width: 100px; height: auto; margin-bottom: 10px; border-radius: 8px;">
         <h1 style="margin-top: 0;">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
         <p>{{ page.description | default: site.description | default: site.github.project_tagline }}</p>
       </header>
