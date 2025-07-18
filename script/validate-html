@@ -15,7 +15,55 @@ end
 def validate(file)
   puts "Checking #{file}..."
 
-  path = File.expand_path "../_site/#{file}", __dir__
+  # Corrected path: assuming _site is in the root of the repository
+  # and this script is run from the root or can access the root.
+  # The __dir__ is mytheme/script, so ../ goes to mytheme/.
+  # We need to go from mytheme/ to _site/
+  path = File.expand_path("../_site/#{file}", __dir__) # This was the problematic line
+
+  # Let's try a more direct path relative to the repository root,
+  # assuming the script is executed from the repository root,
+  # or that the working directory is the repository root.
+  # A simpler approach might be to just use a path relative to the current working directory
+  # which is usually the repository root in GitHub Actions.
+  # So, if _site is at the root, then the path should be ./_site/file
+  # However, __dir__ is mytheme/script, so ../_site is correct to reach mytheme/_site
+  # The error is Errno::ENOENT, meaning the file itself is not found.
+  # This means the path calculated is wrong.
+
+  # Let's re-evaluate the path. If __dir__ is /home/runner/work/mytheme/mytheme/script
+  # then ../_site/index.html would be /home/runner/work/mytheme/mytheme/_site/index.html
+  # This path looks correct in theory if _site is directly under mytheme.
+
+  # The issue might be that the `_site` directory is not being created
+  # or is empty when `script/validate-html` runs.
+  # Let's add a debug step to verify if _site/index.html exists before validation.
+
+  # For now, let's assume the path itself is the problem.
+  # If the script is run from the repository root, then `_site/#{file}` is enough.
+  # If it's run from `script/`, then `../_site/#{file}` is correct.
+
+  # Given the error, the path `_site/index.html` is not found.
+  # This implies Jekyll build might not have completed or created the file.
+
+  # Let's try to make the path absolute relative to the runner's workspace.
+  # The workspace is /home/runner/work/mytheme/mytheme/
+  # So the _site directory is /home/runner/work/mytheme/mytheme/_site/
+  # The file is /home/runner/work/mytheme/mytheme/_site/index.html
+
+  # Let's try to get the absolute path of the repository root first.
+  repo_root = File.expand_path("..", __dir__) # This gets /home/runner/work/mytheme/mytheme
+  path = File.join(repo_root, "_site", file) # This constructs the correct absolute path
+
+  # Debugging: Print the path to verify
+  puts "Attempting to validate file at path: #{path}"
+
+  # Check if the file actually exists before trying to validate it
+  unless File.exist?(path)
+    puts "Error: File not found at #{path}. Jekyll build might have failed or not completed."
+    exit 1
+  end
+
   results = validator(file).validate_file(path)
 
   return puts "Valid!" if results.errors.empty?
@@ -25,4 +73,4 @@ def validate(file)
 end
 
 validate "index.html"
-validate File.join "assets", "css", "style.css"
+validate File.join("assets", "css", "style.css")
