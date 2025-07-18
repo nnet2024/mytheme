@@ -12,8 +12,11 @@ jobs:
         with:
           ruby-version: 3.2.0
           bundler-cache: true
-      - name: Set execute permissions for cibuild script
-        run: chmod +x script/cibuild
+      - name: Set execute permissions for custom scripts
+        run: |
+          chmod +x script/cibuild
+          chmod +x scripts/bootstrap
+          chmod +x scripts/validate-html
       - name: build
         run: script/bootstrap
       - name: test
